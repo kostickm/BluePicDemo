@@ -1,0 +1,36 @@
+---
+declared-services:
+  BluePic-Cloudant:
+    label: cloudantNoSQLDB
+    plan: Shared
+  BluePic-Object-Storage:
+    label: Object-Storage
+    plan: Free
+  BluePic-Mobile-Client-Access:
+    label: AdvancedMobileAccess
+    plan: Gold
+  BluePic-IBM-Push:
+    label: imfpush
+    plan: Basic
+  BluePic-Insights-for-Weather:
+    label: weatherinsights
+    plan: Free-v2
+  BluePic-Alchemy:
+    label: alchemy_api
+    plan: free
+applications:
+- name: BluePic-OSSummit
+  path: ./BluePic-Server
+  random-route: true
+  memory: 512M
+  disk_quota: 1024M
+  instances: 1
+  buildpack: swift_buildpack
+  services:
+    - BluePic-Cloudant
+    - BluePic-Object-Storage
+    - BluePic-Mobile-Client-Access
+    - BluePic-IBM-Push
+    - BluePic-Insights-for-Weather
+    - BluePic-Alchemy
+  host: BluePic-OSSummit
